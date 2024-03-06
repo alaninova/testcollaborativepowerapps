@@ -2172,7 +2172,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638453374416266492",
+    "LastModifiedTimestamp": "638453335575053903",
     "Name": "HamburgerMenu",
     "Rules": [
       {
@@ -2262,7 +2262,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638453374416266492",
+  "LastModifiedTimestamp": "638453335575053903",
   "Name": "835bcf8ab39b41c98cee0d9a4bd1ed12",
   "OverridableProperties": {},
   "Version": "637037806005636186"
