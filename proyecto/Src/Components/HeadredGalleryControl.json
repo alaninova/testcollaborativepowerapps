@@ -27,7 +27,7 @@
             "OptimizeForDevices": "Off",
             "Parent": "HeadredGallery",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 29,
+            "PublishOrderIndex": 60,
             "Rules": [
               {
                 "Category": "Design",
@@ -171,7 +171,7 @@
             "OptimizeForDevices": "Off",
             "Parent": "HeadredGallery",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 30,
+            "PublishOrderIndex": 61,
             "Rules": [
               {
                 "Category": "Data",
@@ -485,7 +485,7 @@
                 "OptimizeForDevices": "Off",
                 "Parent": "SubItemsGallery_2",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 32,
+                "PublishOrderIndex": 63,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -648,7 +648,7 @@
                 "OptimizeForDevices": "Off",
                 "Parent": "SubItemsGallery_2",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 33,
+                "PublishOrderIndex": 64,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -1024,7 +1024,7 @@
                 "OptimizeForDevices": "Off",
                 "Parent": "SubItemsGallery_2",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 34,
+                "PublishOrderIndex": 65,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -1285,7 +1285,7 @@
                 "OptimizeForDevices": "Off",
                 "Parent": "SubItemsGallery_2",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 35,
+                "PublishOrderIndex": 66,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -1483,7 +1483,7 @@
             "OptimizeForDevices": "Off",
             "Parent": "HeadredGallery",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 31,
+            "PublishOrderIndex": 62,
             "Rules": [
               {
                 "Category": "Data",
@@ -1763,7 +1763,7 @@
         "OptimizeForDevices": "Off",
         "Parent": "HeadredGalleryControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 28,
+        "PublishOrderIndex": 59,
         "Rules": [
           {
             "Category": "Data",
