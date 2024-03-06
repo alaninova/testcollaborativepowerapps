@@ -194,9 +194,9 @@ HomeScreen As screen:
         Font: =Font.'Segoe UI'
         Height: =70
         Size: =21
-        Text: ="Mi cambio Alan"
+        Text: ="Mi cambio notificaciones"
         Width: =560
         X: =40
-        Y: =701
+        Y: =926
         ZIndex: =6
 
