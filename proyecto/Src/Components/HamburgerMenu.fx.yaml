@@ -1,0 +1,156 @@
+HamburgerMenu As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =If(HamburgerMenu.Open, App.ActiveScreen.Height, 85)
+    IsOpen: =isOpen
+    Open: =HamburgerMenu.IsOpen
+    Width: =If(HamburgerMenu.IsOpen, App.ActiveScreen.Width, 90)
+    X: =0
+    Y: =0
+    ZIndex: =3
+
+    imgThriveNavIcon_1 As image:
+        AccessibleLabel: ="Thrive Menu"
+        ApplyEXIFOrientation: =false
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderThickness: =1
+        DisabledBorderColor: =RGBA(159, 167, 165, 1)
+        DisabledFill: =RGBA(193, 193, 193, 0.95)
+        FocusedBorderColor: =imgThriveNavIcon_1.BorderColor
+        FocusedBorderThickness: =1
+        Height: =75
+        HoverBorderColor: =ColorFade(imgThriveNavIcon_1.BorderColor, 20%)
+        HoverFill: =ColorFade(imgThriveNavIcon_1.Fill, 20%)
+        Image: ='menu-black'
+        OnSelect: =Set(isOpen,!isOpen)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        PressedBorderColor: =ColorFade(imgThriveNavIcon_1.BorderColor, -20%)
+        PressedFill: =ColorFade(imgThriveNavIcon_1.Fill, -20%)
+        TabIndex: =0
+        Width: =90
+        ZIndex: =1
+
+    Gallery14_2 As gallery.galleryVertical:
+        AccessibleLabel: ="Thrive apps list"
+        BorderColor: =RGBA(101, 128, 187, 1)
+        DisabledBorderColor: =Gallery14_2.BorderColor
+        DisabledFill: =Gallery14_2.Fill
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =1061
+        HoverBorderColor: =Gallery14_2.BorderColor
+        HoverFill: =Gallery14_2.Fill
+        Items: |-
+            =Table({Title:"Title", SubTitle:"Subtitle", Url:""}, {Title:"Title", SubTitle:"Subtitle", Url:""}, {Title:"Title", SubTitle:"Subtitle", Url:""},{Title:"Title", SubTitle:"Subtitle", Url:""})
+        Layout: =Layout.Vertical
+        PressedBorderColor: =Gallery14_2.BorderColor
+        PressedFill: =Gallery14_2.Fill
+        Selectable: =false
+        TemplatePadding: =0
+        TemplateSize: =330
+        Visible: =false
+        WrapCount: =2
+        Y: =75
+        ZIndex: =2
+
+        Image47_2 As image:
+            AccessibleLabel: =
+            BorderColor: =RGBA(234,234,234,1)
+            BorderThickness: =1
+            DisabledBorderColor: =RGBA(159, 167, 165, 1)
+            DisabledFill: =RGBA(193, 193, 193, 0.95)
+            FocusedBorderColor: =Image47_2.BorderColor
+            FocusedBorderThickness: =1
+            Height: =330
+            HoverBorderColor: =ColorFade(Image47_2.BorderColor, 20%)
+            HoverFill: =ColorFade(Image47_2.Fill, 20%)
+            Image: =SamplePic
+            OnSelect: =Select(Parent)
+            PaddingBottom: =220
+            PaddingLeft: =100
+            PaddingRight: =100
+            PaddingTop: =40
+            PressedBorderColor: =ColorFade(Image47_2.BorderColor, -20%)
+            PressedFill: =ColorFade(Image47_2.Fill, -20%)
+            Width: =320
+            ZIndex: =1
+
+        Label54_2 As label:
+            Align: =LayoutAlignItems.Center
+            BorderColor: =RGBA(101, 128, 187, 1)
+            Color: =RGBA(102,102,102,1)
+            DisabledColor: =ColorFade(RGBA(47, 41, 43, 1), 70%)
+            FocusedBorderColor: =Label54_2.BorderColor
+            Font: =Font.Arial
+            Height: =56
+            HoverBorderColor: =Label54_2.BorderColor
+            HoverColor: =Label54_2.Color
+            HoverFill: =Label54_2.Fill
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            PaddingRight: =15
+            PressedBorderColor: =Label54_2.BorderColor
+            PressedColor: =Label54_2.Color
+            PressedFill: =Label54_2.Fill
+            Size: =15
+            Text: =ThisItem.SubTitle
+            VerticalAlign: =VerticalAlign.Top
+            Width: =320
+            Y: =184
+            ZIndex: =2
+
+        Label55_2 As label:
+            Align: =LayoutAlignItems.Center
+            BorderColor: =RGBA(101, 128, 187, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =ColorFade(RGBA(47, 41, 43, 1), 70%)
+            FocusedBorderColor: =Label55_2.BorderColor
+            Font: =Font.Arial
+            Height: =46
+            HoverBorderColor: =Label55_2.BorderColor
+            HoverColor: =Label55_2.Color
+            HoverFill: =Label55_2.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            PressedBorderColor: =Label55_2.BorderColor
+            PressedColor: =Label55_2.Color
+            PressedFill: =Label55_2.Fill
+            Size: =18
+            Text: =ThisItem.Title
+            Width: =320
+            Wrap: =false
+            Y: =125
+            ZIndex: =3
+
+        Button11_2 As button:
+            BorderColor: =RGBA(39, 113, 194, 1)
+            BorderThickness: =1
+            Color: =RGBA(39, 113, 194, 1)
+            DisabledBorderColor: =ColorFade(Button11_2.BorderColor, 70%)
+            DisabledColor: =ColorFade(RGBA(47, 41, 43, 1), 70%)
+            DisabledFill: =ColorFade(RGBA(159, 167, 165, 1), 50%)
+            Fill: =Color.White
+            FocusedBorderColor: |-
+                =ColorValue("#2771C2")
+            FocusedBorderThickness: =1
+            Font: =Font.Arial
+            Height: =54
+            HoverBorderColor: =ColorFade(Button11_2.BorderColor, 20%)
+            HoverColor: =Button11_2.Color
+            HoverFill: =ColorFade(Button11_2.Fill, 20%)
+            OnSelect: =Launch(ThisItem.Url)
+            PressedBorderColor: =Button11_2.Fill
+            PressedColor: =Button11_2.Fill
+            PressedFill: =Button11_2.Color
+            Size: =18
+            Text: ="Launch"
+            Tooltip: =ThisItem.Title
+            Width: =234
+            X: =43
+            Y: =254
+            ZIndex: =4
+

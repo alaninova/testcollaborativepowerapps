@@ -1,0 +1,99 @@
+Caching As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Input: =
+    Name: ="Text"
+    OnReset: =
+    Output: =If(Connection.Connected,Caching.Input,cachedData)
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    SaveData As timer:
+        AutoStart: =true
+        BorderColor: =ColorFade(SaveData.Fill, -15%)
+        DisabledBorderColor: =ColorFade(SaveData.BorderColor, 70%)
+        DisabledColor: =ColorFade(SaveData.Fill, 90%)
+        DisabledFill: =ColorFade(SaveData.Fill, 70%)
+        Duration: =1000
+        Fill: =RGBA(56, 96, 178, 1)
+        FocusedBorderColor: =SaveData.BorderColor
+        FontWeight: =FontWeight.Lighter
+        Height: =93
+        HoverBorderColor: =ColorFade(SaveData.BorderColor, 20%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+        OnTimerStart: =If(Connection.Connected,ClearCollect(cachedData, Caching.Input);SaveData(Caching.Input, Caching.Name),Clear(x);LoadData(x, Caching.Name, true);ClearCollect(cachedData, x))
+        PressedBorderColor: =SaveData.Fill
+        PressedColor: =SaveData.Fill
+        PressedFill: =SaveData.Color
+        Repeat: =true
+        Start: =true
+        Text: |-
+            =Text(Time(0, 0, SaveData.Value/1000), "hh:mm:ss")
+        Visible: =false
+        Width: =532
+        X: =40
+        Y: =174
+        ZIndex: =1
+
+    Toggle1 As toggleSwitch:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =Connection.Connected
+        FalseFill: =RGBA(128, 130, 133, 1)
+        FalseHoverFill: =ColorFade(Toggle1.FalseFill, 15%)
+        FocusedBorderColor: =Toggle1.BorderColor
+        HandleFill: =RGBA(255, 255, 255, 1)
+        Height: =49
+        HoverBorderColor: =ColorFade(Toggle1.BorderColor, 15%)
+        OnUncheck: =Clear(cachedData);LoadData(cachedData, Caching.Name, true)
+        PressedBorderColor: =ColorFade(Toggle1.BorderColor, -15%)
+        Size: =21
+        TrueFill: =RGBA(56, 96, 178, 1)
+        TrueHoverFill: =ColorFade(Toggle1.TrueFill, 15%)
+        Visible: =false
+        Width: =154
+        X: =54
+        Y: =196
+        ZIndex: =2
+
+    Label6 As label:
+        Align: =LayoutAlignItems.Center
+        BorderColor: =RGBA(0, 18, 107, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =Label6.BorderColor
+        Height: =70
+        HoverBorderColor: =Label6.BorderColor
+        HoverColor: =Label6.Color
+        HoverFill: =Label6.Fill
+        PressedBorderColor: =Label6.BorderColor
+        PressedColor: =Label6.Color
+        PressedFill: =Label6.Fill
+        Size: =16
+        Text: ="Caching Component - (hide)"
+        Width: =640
+        ZIndex: =3
+
+    Label7 As label:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =Label7.BorderColor
+        Height: =62
+        HoverBorderColor: =Label7.BorderColor
+        HoverColor: =Label7.Color
+        HoverFill: =Label7.Fill
+        PressedBorderColor: =Label7.BorderColor
+        PressedColor: =Label7.Color
+        PressedFill: =Label7.Fill
+        Size: =21
+        Text: |-
+            ="Server Col:" & CountRows(Caching.Input) & " - Local Col:" & CountRows(cachedData)
+        Width: =560
+        X: =40
+        Y: =98
+        ZIndex: =4
+

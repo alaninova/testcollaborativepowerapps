@@ -1,0 +1,266 @@
+ActivityScreen As screen:
+    Fill: =
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |-
+        =Reset(CommentTextInput);
+        UpdateContext({resetImage: true})
+    Orientation: =If(ActivityScreen.Width < ActivityScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= ActivityScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    Header_7 As Header:
+        Title: ="Activity"
+
+    CommentTextInput As text:
+        BorderColor: =RGBA(237, 237, 237, 1)
+        Color: =RGBA(51, 51, 51, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderColor: =CommentTextInput.BorderColor
+        FocusedBorderThickness: =2
+        Font: =Font.'Patrick Hand'
+        Height: =60
+        HintText: ="Comment here...."
+        HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverColor: =RGBA(51, 51, 51, 1)
+        HoverFill: =RGBA(255, 255, 255, 1)
+        Italic: =true
+        Mode: =TextMode.MultiLine
+        PressedBorderColor: =RGBA(0, 120, 212, 1)
+        PressedColor: =RGBA(51, 51, 51, 1)
+        PressedFill: =RGBA(255, 255, 255, 1)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =544
+        X: =20
+        Y: =987
+        ZIndex: =3
+
+    Image5 As image:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DisabledBorderColor: =RGBA(165, 165, 165, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =If(IsBlank(CommentTextInput.Text), DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(230, 230, 230, 1)
+        FocusedBorderColor: =Image5.BorderColor
+        FocusedBorderThickness: =4
+        Height: =53
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =send
+        OnSelect: |-
+            =UpdateContext({newComment: {Content:"Lorem Ipsum...", DisplayName:"Jhon Levy", ProfilePic: DefaultPic }});
+            
+            // PATCH LOCAL COLLECTION. THIS ENSURES UI IS REFRESHED INSTANTLY
+            Patch(FeedCollection, Defaults(FeedCollection), newComment);
+            
+            // PATCH ITEM SERVER SIDE 
+            UpdateContext({result:Patch(/* REPLACE FOLLOWING FeedCollection BY ACTUAL DATA SOURCE */ FeedCollection , Defaults(FeedCollection), newComment)});
+            
+            // Error Handling
+            IfError(result, /* Patch again or let user know something went wrong */ Notify("Oups! something went wrong", NotificationType.Error));
+            
+            Reset(CommentTextInput);
+        PaddingBottom: =5
+        PaddingLeft: =5
+        PaddingRight: =5
+        PaddingTop: =5
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Transparency: =If(IsBlank(CommentTextInput.Text),0.4,0)
+        Width: =59
+        X: =568
+        Y: =987
+        ZIndex: =8
+
+    Icon1 As icon.Reload:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Color: =RGBA(210, 210, 210, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderColor: =Icon1.BorderColor
+        FocusedBorderThickness: =4
+        Height: =33
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(149, 149, 149, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.Reload
+        OnSelect: =
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =33
+        X: =594
+        Y: =26
+        ZIndex: =9
+
+    FeedGallery As gallery.variableTemplateHeightGallery:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        DisabledBorderColor: =FeedGallery.BorderColor
+        DisabledFill: =FeedGallery.Fill
+        Height: =858
+        HoverBorderColor: =FeedGallery.BorderColor
+        HoverFill: =FeedGallery.Fill
+        Items: =FeedCollection
+        Layout: =Layout.Vertical
+        OnSelect: =ClearCollect(Comments, WorldCup2018.GetFeed())
+        PressedBorderColor: =FeedGallery.BorderColor
+        PressedFill: =FeedGallery.Fill
+        ShowScrollbar: =false
+        TemplatePadding: =1
+        TemplateSize: =234
+        Y: =86
+        ZIndex: =10
+
+        Image5_1 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =Image5_1.BorderColor
+            FocusedBorderThickness: =4
+            Height: =56
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =ThisItem.ProfilePic
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            RadiusBottomLeft: =28
+            RadiusBottomRight: =28
+            RadiusTopLeft: =28
+            RadiusTopRight: =28
+            Width: =57
+            X: =20
+            Y: =18
+            ZIndex: =3
+
+        Title2_1 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Title2_1.BorderColor
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Semibold
+            Height: =26
+            HoverBorderColor: =Title2_1.BorderColor
+            HoverColor: =Title2_1.Color
+            HoverFill: =Title2_1.Fill
+            OnSelect: =
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =Title2_1.BorderColor
+            PressedColor: =Title2_1.Color
+            PressedFill: =Title2_1.Fill
+            Size: =16
+            Text: =ThisItem.DisplayName
+            VerticalAlign: =VerticalAlign.Top
+            Width: =390
+            X: =90
+            Y: =18
+            ZIndex: =4
+
+        Label8 As label:
+            Align: =TextPosition.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Label8.BorderColor
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Lighter
+            Height: =34
+            HoverBorderColor: =Label8.BorderColor
+            HoverColor: =Label8.Color
+            HoverFill: =Label8.Fill
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =Label8.BorderColor
+            PressedColor: =Label8.Color
+            PressedFill: =Label8.Fill
+            Size: =11
+            Text: =Now()
+            Width: =146
+            X: =477
+            Y: =10
+            ZIndex: =6
+
+        Rectangle4 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(230, 230, 230, 1)
+            FocusedBorderColor: =Rectangle4.BorderColor
+            FocusedBorderThickness: =4
+            Height: =9
+            HoverFill: =RGBA(0, 120, 212, 1)
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            Width: =638
+            Y: =Image7.Y + Image7.Height + 30
+            ZIndex: =8
+
+        Title2_2 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Title2_2.BorderColor
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            HoverBorderColor: =Title2_2.BorderColor
+            HoverColor: =Title2_2.Color
+            HoverFill: =Title2_2.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =Title2_2.BorderColor
+            PressedColor: =Title2_2.Color
+            PressedFill: =Title2_2.Fill
+            Size: =12
+            Text: ="Job title goes here"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =420
+            X: =90
+            Y: =44
+            ZIndex: =9
+
+        Image7 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =Image7.BorderColor
+            FocusedBorderThickness: =4
+            Height: =91
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =DefaultText
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =320
+            X: =77
+            Y: =89
+            ZIndex: =10
+
+    Menu_4 As Menu_1:
+        Items: =MenuItems
+        Y: =1061
+        ZIndex: =13
+

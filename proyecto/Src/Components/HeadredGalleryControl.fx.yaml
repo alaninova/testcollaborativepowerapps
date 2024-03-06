@@ -1,0 +1,141 @@
+HeadredGalleryControl As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =1136
+    Items: |-
+        =Table({ 
+           Header:"ACTION",
+           Items:ForAll([{Name:"Business Card", NavigationUrl:"", NavigationScreen:App.ActiveScreen }], {Value: ThisRecord})
+        },{ 
+           Header:"HELP & FEEDBACK",
+           Items:ForAll([{Name:"Help", NavigationUrl:"", NavigationScreen:App.ActiveScreen }, 
+           {Name:"Give Us Feedback", NavigationUrl:"", NavigationScreen:App.ActiveScreen }], {Value: ThisRecord})
+        
+        }, { 
+           Header:"ABOUT",
+           Items:ForAll([{Name:"What's new", NavigationUrl:"", NavigationScreen:App.ActiveScreen },
+                  {Name:"Data Protection Notice",     NavigationUrl:"", NavigationScreen:App.ActiveScreen }], {Value: ThisRecord})
+        })
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    HeadredGallery As gallery.variableTemplateHeightGallery:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        DisabledBorderColor: =HeadredGallery.BorderColor
+        DisabledFill: =HeadredGallery.Fill
+        Height: =HeadredGalleryControl.Height
+        HoverBorderColor: =HeadredGallery.BorderColor
+        HoverFill: =HeadredGallery.Fill
+        Items: =HeadredGalleryControl.Items
+        Layout: =Layout.Vertical
+        PressedBorderColor: =HeadredGallery.BorderColor
+        PressedFill: =HeadredGallery.Fill
+        TemplatePadding: =0
+        TemplateSize: =280
+        Width: =HeadredGalleryControl.Width
+        ZIndex: =1
+
+        lblHeader_1 As label:
+            Color: =RGBA(102, 102, 102, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(238, 238, 238, 1)
+            FocusedBorderColor: =lblHeader_1.BorderColor
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Semibold
+            Height: =95
+            HoverBorderColor: =lblHeader_1.BorderColor
+            HoverColor: =lblHeader_1.Color
+            HoverFill: =lblHeader_1.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =15
+            PaddingLeft: =15
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =lblHeader_1.BorderColor
+            PressedColor: =lblHeader_1.Color
+            PressedFill: =lblHeader_1.Fill
+            Size: =16
+            Text: =ThisItem.Header
+            VerticalAlign: =VerticalAlign.Bottom
+            Width: =640
+            ZIndex: =1
+
+        "SubItemsGallery_2 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =SubItemsGallery_2.BorderColor
+            DisabledFill: =SubItemsGallery_2.Fill
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =60* CountRows(ThisItem.Items)
+            HoverBorderColor: =SubItemsGallery_2.BorderColor
+            HoverFill: =SubItemsGallery_2.Fill
+            Items: =ThisItem.Items
+            Layout: =Layout.Vertical
+            OnSelect: =If(!IsBlank(ThisItem.Value.NavigationUrl), Launch(ThisItem.Value.NavigationUrl), Navigate(ThisItem.Value.NavigateScreen, ScreenTransition.Cover))
+            PressedBorderColor: =SubItemsGallery_2.BorderColor
+            PressedFill: =SubItemsGallery_2.Fill
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =60
+            Y: =lblHeader_1.Y + lblHeader_1.Height
+            ZIndex: =2
+
+            lblTitle_2 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderColor: =lblTitle_2.BorderColor
+                Font: =Font.'Patrick Hand'
+                Height: =60
+                HoverBorderColor: =lblTitle_2.BorderColor
+                HoverColor: =lblTitle_2.Color
+                HoverFill: =lblTitle_2.Fill
+                OnSelect: =If(!IsBlank(ThisItem.Value.NavigationUrl), Launch(ThisItem.Value.NavigationUrl), Navigate(ThisItem.Value.NavigationScreen, ScreenTransition.Fade))
+                PaddingBottom: =0
+                PaddingLeft: =15
+                PaddingRight: =0
+                PaddingTop: =0
+                PressedBorderColor: =lblTitle_2.BorderColor
+                PressedColor: =lblTitle_2.Color
+                PressedFill: =lblTitle_2.Fill
+                Size: =18
+                Text: =ThisItem.Value.Name
+                Width: =568
+                ZIndex: =1
+
+            Separator1_3 As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =Separator1_3.Fill
+                Fill: =RGBA(230, 230, 230, 1)
+                FocusedBorderColor: =Separator1_3.BorderColor
+                Height: =3
+                HoverFill: =Separator1_3.Fill
+                OnSelect: =Select(Parent)
+                PressedFill: =Separator1_3.Fill
+                Width: =Parent.TemplateWidth
+                Y: =57
+                ZIndex: =3
+
+            Arrow_2 As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderColor: =Arrow_2.BorderColor
+                FocusedBorderThickness: =4
+                Height: =50
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =arrow
+                OnSelect: =Select(Parent)
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =54
+                X: =568
+                Y: =5
+                ZIndex: =4
+

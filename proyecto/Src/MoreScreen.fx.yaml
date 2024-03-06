@@ -1,0 +1,36 @@
+MoreScreen As screen:
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |
+        =ClearCollect(MoreMenu, 
+        { 
+           Header:"ACTION",
+           Items:ForAll([{Name:"Business Card", NavigationUrl:"", NavigationScreen:HomeScreen}], {Value: ThisRecord})
+        },{ 
+           Header:"HELP & FEEDBACK",
+           Items:ForAll([{Name:"Help", NavigationUrl: "" }, 
+           {Name:"Give Us Feedback", NavigationUrl:""}], {Value: ThisRecord})
+        
+        }, { 
+           Header:"ABOUT",
+           Items:ForAll([{Name:"What's new", NavigationUrl:""}, {Name:"Data Protection Notice", NavigationUrl:"" }], {Value: ThisRecord})
+        
+        })
+    Orientation: =If(MoreScreen.Width < MoreScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= MoreScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    Header_1 As Header:
+        Title: ="More"
+
+    HeadredGalleryControl_1 As HeadredGalleryControl:
+        Fill: =RGBA(230, 230, 230, 1)
+        Height: =975
+        Items: =MoreMenu
+        Y: =86
+
+    Menu_5 As Menu_1:
+        Items: =MenuItems
+        Y: =1061
+        ZIndex: =5
+

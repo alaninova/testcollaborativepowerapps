@@ -1,0 +1,54 @@
+App As appinfo:
+    BackEnabled: =true
+    MinScreenHeight: =320
+    MinScreenWidth: =320
+    OnError: =
+    OnStart: |+
+        =// GLOBAL VARIABLES & COLLECTIONS USED THROUGHOUT THE APP CAN BE INITIALIZED HERE
+        // AVOID NETWORK CALLS IN HERE
+        
+        Set(
+            CurrentUserEmail,
+            User().Email
+        );
+        
+        // SET UP LOWER MENU BAR 
+        ClearCollect(MenuItems,  
+            {
+                icon: play,
+                activeIcon: play_selected,
+                title: "Schedule",
+                page: HomeScreen
+            },
+            {
+                icon: profile,
+                activeIcon: profile_selected,
+                title: "Activity",
+                page: ActivityScreen
+            },
+            {
+                icon: more,
+                activeIcon: more_selected,
+                title: "More",
+                page: MoreScreen
+            }
+        );
+        
+        // Deep Linking 
+        If(!IsBlank(Param("id")),
+            Navigate(DetailViewScreen,  ScreenTransition.None, { SelectedItem : /* REPLACE THE FOLLOWIN BY A LOOK UP USING Param("id") */ { Label: "some data" } });
+            // E.G: Navigate(DetailViewScreen,  ScreenTransition.None, LookUp(Data, id = Param("id") });
+        
+            // IMPORTANT NOTE: DETAILVIEW SCREEN MIGHT RELY ON DATA LOADED IN THE ONVISIBLE OF HOMESCREEN. IN THAT CASE, YOU NEED TO ENSURE ALL ADDITIONAL CALLS ARE MADE HERE AS WELL.
+        
+        );
+        
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

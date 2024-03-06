@@ -1,0 +1,185 @@
+HomeScreen As screen:
+    Fill: =
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |-
+        =// SHOW LOADER ANIMATION BEFORE ESSENTIAL NETWORK CALLS
+        UpdateContext({showLoader:true && IsEmpty(LocalCollection)});
+        
+        // IMPORTANT NETWORK CALLS ONLY (i.e minium needed for the user to start interacting with app)
+        ClearCollect(LocalCollection, /*"REPLACE THIS WITH ACTUAL DATA SOURCE */ { Label:"Item 1"},{ Label:"Item 2" }, { Label:"Item 3" });
+        
+        // HIDE LOADER ANIMATION
+        UpdateContext({showLoader:false});
+        
+        // OTHER DATA PRE-LOADING (NOTE: SHOULD BE DATA NOT NEEDED RIGHT AWAY IN THE HOME SCREEN)
+        // USER CAN INTERACT WITH APP WHILE DATA IS LOADING
+        // E.g FeedCollection IS ONLY USED IN ACTIVITY SCREEN BUT WE CAN ALREADY START LOADING IT.
+        ClearCollect(FeedCollection, /* REPLACE THE FOLLOWING WITH ACTUAL DATA SOURCE */ { Content:"This is a great app!", DisplayName:"Megan Brower", ProfilePic: DefaultPic }, { Content:"Amazing performance !", DisplayName:"Emily Smith", ProfilePic: DefaultPic });
+        
+        //Set(CurrentUserProfile, Office365Users.MyProfile())
+        
+        // OTHER BUSINESS LOGIC GOES HERE
+        // ....
+    Orientation: =If(HomeScreen.Width < HomeScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= HomeScreen.Width)
+    Width: =App.DesignWidth
+
+    cmpHeader As Header:
+        Title: ="HOME"
+        ZIndex: =1
+
+    cmpMenu As Menu_1:
+        Items: =MenuItems
+        Y: =1061
+        ZIndex: =2
+
+    "glFeed As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        BorderColor: =RGBA(166, 166, 166, 1)
+        DisabledBorderColor: =glFeed.BorderColor
+        DisabledFill: =glFeed.Fill
+        Height: =959
+        HoverBorderColor: =glFeed.BorderColor
+        HoverFill: =glFeed.Fill
+        Items: =LocalCollection
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =Navigate([@DetailViewScreen],ScreenTransition.Cover, { SelectedItem: ThisItem })
+        PressedBorderColor: =glFeed.BorderColor
+        PressedFill: =glFeed.Fill
+        TemplatePadding: =0
+        TemplateSize: =160
+        Y: =102
+        ZIndex: =3
+
+        Image As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =Image.BorderColor
+            FocusedBorderThickness: =4
+            Height: =128
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =SamplePic
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =128
+            X: =16
+            ZIndex: =1
+
+        Title As label:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Title.BorderColor
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Semibold
+            Height: =Title.Size * 1.8
+            HoverBorderColor: =Title.BorderColor
+            HoverColor: =Title.Color
+            HoverFill: =Title.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =Title.BorderColor
+            PressedColor: =Title.Color
+            PressedFill: =Title.Fill
+            Size: =20
+            Text: =ThisItem.Label
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Image.Width - 104
+            X: =Image.X + Image.Width + 24
+            Y: =10
+            ZIndex: =2
+
+        Subtitle As label:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Subtitle.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =Subtitle.Size * 1.8
+            HoverBorderColor: =Subtitle.BorderColor
+            HoverColor: =Subtitle.Color
+            HoverFill: =Subtitle.Fill
+            Italic: =true
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =Subtitle.BorderColor
+            PressedColor: =Subtitle.Color
+            PressedFill: =Subtitle.Fill
+            Size: =18
+            Text: =ThisItem.Label
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title.Width
+            X: =Title.X
+            Y: =50
+            ZIndex: =3
+
+        NextArrow2 As icon.ChevronRight:
+            AccessibleLabel: =NextArrow2.Tooltip
+            BorderColor: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =NextArrow2.BorderColor
+            FocusedBorderThickness: =4
+            Height: =60
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Width: =60
+            X: =Parent.TemplateWidth - NextArrow2.Width - 5
+            Y: =34
+            ZIndex: =4
+
+        Image4 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =Image4.BorderColor
+            FocusedBorderThickness: =4
+            Height: =33
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =seperator
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Transparency: =0.6
+            Width: =640
+            Y: =127
+            ZIndex: =6
+
+    cmpHamburgerMenu As HamburgerMenu:
+        Height: =86
+        Open: =cmpHamburgerMenu.IsOpen
+        Width: =89
+        ZIndex: =4
+
+    cmpPreloader As Preloader:
+        IsLoading: =showLoader
+        Visible: =cmpPreloader.IsLoading
+        ZIndex: =5
+

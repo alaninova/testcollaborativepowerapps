@@ -1,0 +1,90 @@
+DetailViewScreen As screen:
+    Fill: =
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnHidden: =
+    OnVisible: =
+    Orientation: =If(DetailViewScreen.Width < DetailViewScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= DetailViewScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    Header_6 As Header:
+        BackButtonVisible: =true
+        Title: ="DETAIL VIEW"
+
+    lbSessionDetailInfo As label:
+        Align: =LayoutAlignItems.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =lbSessionDetailInfo.BorderColor
+        FocusedBorderThickness: =2
+        Font: =Font.'Patrick Hand'
+        Height: =41
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(128, 128, 128, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        OnSelect: =
+        PaddingLeft: =0
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =RGBA(102, 102, 102, 1)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Size: =28
+        Text: =SelectedItem.Label
+        Width: =409
+        Wrap: =false
+        X: =115
+        Y: =508
+        ZIndex: =17
+
+    Image3 As image:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderColor: =Image3.BorderColor
+        FocusedBorderThickness: =4
+        Height: =385
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =SamplePic
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =409
+        X: =115
+        Y: =111
+        ZIndex: =18
+
+    lbSessionDetailInfo_1 As label:
+        Align: =LayoutAlignItems.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        Color: =RGBA(128, 128, 128, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderColor: =lbSessionDetailInfo_1.BorderColor
+        FocusedBorderThickness: =2
+        Font: =Font.'Patrick Hand'
+        Height: =41
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(128, 128, 128, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Italic: =true
+        OnSelect: =
+        PaddingLeft: =0
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =RGBA(102, 102, 102, 1)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Size: =28
+        Text: =SelectedItem.Label
+        Width: =409
+        Wrap: =false
+        X: =115
+        Y: =561
+        ZIndex: =19
+
